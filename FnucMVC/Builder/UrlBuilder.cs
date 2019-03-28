@@ -9,6 +9,6 @@ namespace FnucMVC.Models
 {
     public class UrlBuilder : IUriServices
     {
-        public string[] ApiURL { get => ConfigurationManager.AppSettings.GetValues("baseUri");  }
+        public string ApiURL { get => ConfigurationManager.AppSettings["baseUri"];  }
     }
 }

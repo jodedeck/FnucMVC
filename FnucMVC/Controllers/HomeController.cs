@@ -11,7 +11,12 @@ namespace FnucMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private string[] _baseUri;
+        private string _baseUri;
+
+        public HomeController()
+        {
+
+        }
         public HomeController(IUriServices uriServices)
         {
             _baseUri = uriServices.ApiURL;

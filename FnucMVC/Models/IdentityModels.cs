@@ -29,5 +29,7 @@ namespace FnucMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FnucMVC.ViewModel.ProductViewModel> ProductViewModels { get; set; }
     }
 }

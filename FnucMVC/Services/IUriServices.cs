@@ -4,7 +4,7 @@ namespace FnucMVC.Controllers
 {
     public interface IUriServices
     {
-       string[] ApiURL { get; }
+       string ApiURL { get; }
 
     }
 }
