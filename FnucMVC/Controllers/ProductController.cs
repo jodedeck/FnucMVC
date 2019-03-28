@@ -12,21 +12,24 @@ namespace FnucMVC.Controllers
 {
     public class ProductController : Controller
     {
+        ProductService productService = new ProductService(new UrlBuilder());
+   
         // GET: Product
-        public ActionResult Index()
-        {
-            ViewBag.Message = "Ici, on est dans l'index du controller product";
-
-
-            return View();
+        public async Task<ActionResult> Index()
+        {          
+            var products = await productService.GetProducts();
+            return View("GetProducts", products);
         }
 
         
-        public async Task<List<ProductViewModel>> GetProducts()
-        {
-            ProductService productService = new ProductService(new UrlBuilder());
-            return await productService.GetProducts();
-        }
+        //public async Task<List<ProductViewModel>> GetProducts()
+        //{
+            
+        //    var products = await productService.GetProducts();
+        //    return products;
+        //}
+
+
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
@@ -42,11 +45,16 @@ namespace FnucMVC.Controllers
 
         // POST: Product/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public  ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
+                // transformer la collection en ProductViewModel
+                ProductViewModel productViewModel = productService.CreateProductViewModel(collection);
+                //faire l'appel à l'API avec le json correcte
+                Task.Run(async () => await productService.PostProduct(productViewModel));
+               
 
                 return RedirectToAction("Index");
             }
