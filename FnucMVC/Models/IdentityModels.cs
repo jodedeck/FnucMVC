@@ -31,5 +31,7 @@ namespace FnucMVC.Models
         }
 
         public System.Data.Entity.DbSet<FnucMVC.ViewModel.ProductViewModel> ProductViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<FnucMVC.ViewModel.CategoryViewModel> CategoryViewModels { get; set; }
     }
 }
